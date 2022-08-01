@@ -1,7 +1,10 @@
 /*
 
 !/.gitignore
+!/README.md
 
-!/nvim/
-!/vim/
 !/alacritty/
+!/nvim/
+!/tmux
+!/vim/
+!/zsh/
