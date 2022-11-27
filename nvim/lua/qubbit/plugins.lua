@@ -31,6 +31,13 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	} 
   use 'navarasu/onedark.nvim'
+<<<<<<< HEAD
+=======
+  use { 'gopadhi@git.amazon.com:pkg/Vim-code-browse',
+    requires = { { 'tpope/vim-fugitive' }}
+  }
+
+>>>>>>> 34b3285 (nvim stuff)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

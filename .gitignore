@@ -9,3 +9,5 @@
 !/tmux
 !/vim/
 !/zsh/
+
+nvim/plugin/packer_compiled.lua
