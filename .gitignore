@@ -9,5 +9,9 @@
 !/tmux
 !/vim/
 !/zsh/
+!/antigen/
+
+zsh/.zsh_history
+zsh/.zshrc.zwc
 
 nvim/plugin/packer_compiled.lua

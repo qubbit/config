@@ -1,0 +1,23 @@
+
+[bell]
+animation = "EaseOutExpo"
+
+[env]
+TERM = "alacritty"
+
+[font.bold]
+style = "Bold"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
+[window]
+decorations = "full"
+title = "Alacritty"
+
+[general]
+live_config_reload = true
+import = ["/Users/gopal/.config/alacritty/colors/nord.toml"]

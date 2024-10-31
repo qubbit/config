@@ -16,6 +16,12 @@ command_exists() {
   command -V "$@" > /dev/null 2>&1
 }
 
+function source_file_if_exists {
+  if [ -f $1 ]; then
+    source $1
+  fi
+}
+
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export JDTLS_HOME="/Users/gopadhi/Downloads/jdt-language-server-1.9.0-202203031534"
 if [[ $(os) == 'Darwin' ]]; then
@@ -23,8 +29,6 @@ if [[ $(os) == 'Darwin' ]]; then
 fi
 
 #  Path configuration
-export PATH="~/.dotfiles/bin:$PATH"
-export PATH="~/.dotfiles/fzf/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -35,7 +39,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [ -f "$(command_exists yarn)" ] && export PATH="$PATH:$(yarn global bin)"
 
-ANTIGEN_PATH=~/.dotfiles/antigen/antigen.zsh
+ANTIGEN_PATH=~/.config/antigen/antigen.zsh
 
 if [ -f $ANTIGEN_PATH ]; then
   source $ANTIGEN_PATH
@@ -56,11 +60,6 @@ if [ -f $ANTIGEN_PATH ]; then
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle zsh-users/zsh-history-substring-search
 
-  antigen theme romkatv/powerlevel10k
-  # antigen theme spaceship-prompt/spaceship-prompt
-  # antigen theme geometry-zsh/geometry
-  # antigen theme avit
-  # antigen theme geometry-zsh/geometry
   antigen apply
 fi
 
@@ -249,18 +248,9 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-[ -f ~/.dotfiles/amazon.zsh ] && source ~/.dotfiles/amazon.zsh
-
-# . /usr/local/etc/profile.d/z.sh
-export PATH=$HOME/.toolbox/bin:$PATH
-export PATH="/Users/gopadhi/code/website/src/PBCentralTeamScripts/scripts":$PATH
-
-export PATH="/Applications/Fortify/Fortify_SCA_and_Apps_21.1.0/bin:$PATH"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="/Applications/Fortify/Fortify_SCA_and_Apps_21.1.1/bin:$PATH"
 function fix_insecure_dirs() {
   for f in $(compaudit);do sudo chown $(whoami):admin $f; chmod -R 755 $f; done;
 }
@@ -270,6 +260,6 @@ function fix_insecure_dirs() {
 export PATH="/usr/local/sbin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+source_file_if_exists /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-. /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
+eval "$(starship init zsh)"
